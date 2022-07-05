@@ -60,55 +60,81 @@ class fraction{
     public static fraction sum(fraction a, fraction b){
         int cDenominator = a.denominator * b.denominator;
         int cNumerator = a.numerator * b.denominator + a.denominator * b.numerator;
+        int nok = find_CSD(cNumerator, cDenominator);
+        fraction c = new fraction(numerator: cNumerator / nok, denominator: cDenominator / nok);
+        return c;
+    }
+
+    public static fraction minus(fraction a, fraction b){
+        int cDenominator = a.denominator * b.denominator;
+        int cNumerator = a.numerator * b.denominator - a.denominator * b.numerator;
+        int nok = find_CSD(cNumerator, cDenominator);
+        fraction c = new fraction(numerator: cNumerator / nok, denominator: cDenominator / nok);
+        return c;
+    }
+
+    public static fraction div(fraction a, fraction b){
+        int cDenominator = a.denominator * b.denominator;
+        int cNumerator = a.numerator * b.denominator;
+        int nok = find_CSD(cNumerator, cDenominator);
+        fraction c = new fraction(numerator: cNumerator / nok, denominator: cDenominator / nok);
+        return c;
+    }
+
+    public static fraction multiply(fraction a, fraction b){
+        int cDenominator = a.denominator * b.denominator;
+        int cNumerator = a.numerator * b.denominator;
+        int nok = find_CSD(cNumerator, cDenominator);
+        fraction c = new fraction(numerator: cNumerator / nok, denominator: cDenominator / nok);
+        return c;
+    }
+
+    public void showfrac(){
+        if(numerator % denominator == 0)
+            System.out.println(this.numerator / this.denominator);
+        else
+            System.out.println(this.numerator + "/" + this.denominator);
     }
 }
 
 public class Main{
-    public static void main(String args[]){
-        System.out.println("Введите через пробел первое число, операцию, второе число: ");
-        Scanner in = new Scanner(System.in);
-        String str = in.nextLine();
-        String[] parts = str.split(" ");
 
-        //первое число  
-        double num1 = Double.parseDouble(parts[0]); 
-
-        //проверяем корректность введенного первого числа
-        try{
-            num1 = Double.parseDouble(parts[0]);
-        } catch (NumberFormatException e) {
-            System.out.println("Error " + parts[0]);
+    static int find_CSD(int a, int b){
+        while(b != 0){
+            int tmp = b;
+            b = a % b;
+            a = tmp;
         }
+        return a;
+    }
 
-        //второе число
-        double num2 = Double.parseDouble(parts[2]);
 
-        //проверяем корректность введенного второго числа
-        try{
-            num2 = Double.parseDouble(parts[2]);
-        } catch (NumberFormatException e) {
-            System.out.println("Error " + parts[2]);
+public static void main(String args[]){
+    System.out.println("Выберите калькулятор: ");
+    Scanner in = new Scanner(System.in);
+    int case = in.nextInt();
+    switch(case){
+    case "+":
+        System.out.println(num1 + num2);
+        break;
+    case "-":
+        System.out.println(num1 - num2);
+        break;
+    case "*":
+        System.out.println(num1 * num2);
+        break;
+    case "/":
+        if(Double.parseDouble(parts[2]) != 0){
+            System.out.println(num1 / num2);
+            break;
         }
-        
-        switch (parts[1]) {
-        case "+":
-            System.out.println(num1 + num2);
-            break;
-        case "-":
-            System.out.println(num1 - num2);
-            break;
-        case "*":
-            System.out.println(num1 * num2);
-            break;
-        case "/":
-            if(Double.parseDouble(parts[2]) != 0){
-                System.out.println(num1 / num2);
-                break;
-            }
-            else{
-                System.out.println("Вы не можете делить на 0");
-            }
+        else{
+            System.out.println("Вы не можете делить на 0");
         }
-    }   
-
+    }
+    case 2:
+    int num1 = in.nextInt();
+    String symb1 = in.next();
+    int num2 = in.nextInt();
+    fraction frac1 = new fraction(num1, num2);   
 }
