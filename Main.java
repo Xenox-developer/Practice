@@ -1,140 +1,132 @@
-//package ru.ac.uniyar.mf.chindin;
-//import java.util.Scanner;
-
-// public class Main{  
-//     public static void main(String args[]){  
-//         System.out.println("Hello");  
-//         Scanner in = new Scanner(System.in);
-//         int num = in.nextInt();
-//         String str = in.next();
-//         System.out.println(str);
-//         int num2 = Integer.parseInt("123");
-//         str = String.valueOf(num2);
-//         System.out.println(str);
-
-//         str = "Not num";
-//         String[] parts = str.split(" ");
-//         System.out.println("Parts: " + parts.length);
-//         System.out.println("First: " + parts[0]);
-//         System.out.println("Second: " + parts[1]);
-//     }  
-// }  
-
-// public class Main{
-//     public static void main(String args[]){
-//         Scanner in = new Scanner(System.in);
-//         String str = in.next();
-
-//         try{
-//             int num = Integer.parseInt(str);
-//             System.out.println(num);
-//         }
-//         catch (NumberFormatException e) {
-//             System.out.println("Error " + str);
-//         }
-//     }
-// }
-
+//package ru.ac.uniyar.mf.makhno;
 import java.util.Scanner;
 
 class fraction{
-    int numerator;
-    int denominator;
+    int _numerator;
+    int _denominator;
 
     static int find_CSD(int a, int b){
-        while (b != 0){
-            int tmp = b;
+        while (b != 0) {
+            int temp = b;
             b = a % b;
-            a = tmp;
+            a = temp;
         }
         return a;
     }
 
     fraction(int numerator, int denominator){
-        this.numerator = numerator;
-        if(denominator == 0)
+        this._numerator = numerator;
+        if (denominator == 0)
             System.out.println("Нельзя");
-        this.denominator = denominator;
+        this._denominator = denominator;
     }
 
-    public static fraction sum(fraction a, fraction b){
-        int cDenominator = a.denominator * b.denominator;
-        int cNumerator = a.numerator * b.denominator + a.denominator * b.numerator;
+    public static fraction sum(fraction a, fraction b) {
+        int cDenominator = a._denominator * b._denominator;
+        int cNumerator = a._numerator * b._denominator + a._denominator * b._numerator;
         int nok = find_CSD(cNumerator, cDenominator);
-        fraction c = new fraction(numerator: cNumerator / nok, denominator: cDenominator / nok);
+        fraction c = new fraction(cNumerator / nok, cDenominator / nok);
         return c;
     }
 
-    public static fraction minus(fraction a, fraction b){
-        int cDenominator = a.denominator * b.denominator;
-        int cNumerator = a.numerator * b.denominator - a.denominator * b.numerator;
+    public static fraction minus(fraction a, fraction b) {
+        int cDenominator = a._denominator * b._denominator;
+        int cNumerator = a._numerator * b._denominator - a._denominator * b._numerator;
         int nok = find_CSD(cNumerator, cDenominator);
-        fraction c = new fraction(numerator: cNumerator / nok, denominator: cDenominator / nok);
+        fraction c = new fraction(cNumerator / nok, cDenominator / nok);
         return c;
     }
 
-    public static fraction div(fraction a, fraction b){
-        int cDenominator = a.denominator * b.denominator;
-        int cNumerator = a.numerator * b.denominator;
+    public static fraction div(fraction a, fraction b) {
+        int cDenominator = a._denominator * b._numerator;
+        int cNumerator = a._numerator * b._denominator;
         int nok = find_CSD(cNumerator, cDenominator);
-        fraction c = new fraction(numerator: cNumerator / nok, denominator: cDenominator / nok);
+        fraction c = new fraction(cNumerator / nok, cDenominator / nok);
         return c;
     }
 
-    public static fraction multiply(fraction a, fraction b){
-        int cDenominator = a.denominator * b.denominator;
-        int cNumerator = a.numerator * b.denominator;
+    public static fraction multiply(fraction a, fraction b) {
+        int cDenominator = a._denominator * b._denominator;
+        int cNumerator = a._numerator * b._numerator;
         int nok = find_CSD(cNumerator, cDenominator);
-        fraction c = new fraction(numerator: cNumerator / nok, denominator: cDenominator / nok);
+        fraction c = new fraction(cNumerator / nok, cDenominator / nok);
         return c;
     }
 
-    public void showfrac(){
-        if(numerator % denominator == 0)
-            System.out.println(this.numerator / this.denominator);
+    public void showfrac() {
+        if (_numerator % _denominator == 0)
+            System.out.println(this._numerator / this._denominator);
         else
-            System.out.println(this.numerator + "/" + this.denominator);
+            System.out.println(this._numerator + "/" + this._denominator);
     }
-}
 
-public class Main{
+}
+public class Main {
 
     static int find_CSD(int a, int b){
-        while(b != 0){
-            int tmp = b;
+        while (b != 0) {
+            int temp = b;
             b = a % b;
-            a = tmp;
+            a = temp;
         }
         return a;
     }
 
-
-public static void main(String args[]){
-    System.out.println("Выберите калькулятор: ");
-    Scanner in = new Scanner(System.in);
-    int case = in.nextInt();
-    switch(case){
-    case "+":
-        System.out.println(num1 + num2);
-        break;
-    case "-":
-        System.out.println(num1 - num2);
-        break;
-    case "*":
-        System.out.println(num1 * num2);
-        break;
-    case "/":
-        if(Double.parseDouble(parts[2]) != 0){
-            System.out.println(num1 / num2);
-            break;
-        }
-        else{
-            System.out.println("Вы не можете делить на 0");
+    public static void main(String[] args) {
+        System.out.println("Выберите калькулятор:");
+        Scanner in = new Scanner(System.in);
+        int _case = in.nextInt();
+        switch(_case) {
+            case 1:
+            int num_1 = in.nextInt();
+            String symb = in.next();
+            int num_2 = in.nextInt();
+            switch (symb) {
+                case "+":
+                    System.out.println(num_1 + num_2);
+                    break;
+                case "-":
+                    System.out.println(num_1 - num_2);
+                    break;
+                case "*":
+                    System.out.println(num_1 * num_2);
+                    break;
+                case "/":
+                    if (num_2 == 0) {
+                        System.out.println("Нет решений");
+                        break;
+                    } else
+                        System.out.println(num_1 / num_2);
+                    break;
+            }
+            case 2:
+            int num1 = in.nextInt();
+            String symb1 = in.next();
+            int num2 = in.nextInt();
+            fraction frac_1 = new fraction(num1, num2);
+            String symb3 = in.next();
+            int num_3 = in.nextInt();
+            String symb2 = in.next();
+            int num_4 = in.nextInt();
+            fraction frac_2 = new fraction(num_3, num_4);
+            switch (symb3) {
+                case "+":
+                    fraction new_frac = frac_1.sum(frac_1, frac_2);
+                    new_frac.showfrac();
+                    break;
+                case "-":
+                    fraction new_frac_2 = frac_1.minus(frac_1, frac_2);
+                    new_frac_2.showfrac();
+                    break;
+                case "*":
+                    fraction new_frac_3 = frac_1.multiply(frac_1, frac_2);
+                    new_frac_3.showfrac();
+                    break;
+                case "/":
+                    fraction new_frac_4 = frac_1.div(frac_1, frac_2);
+                    new_frac_4.showfrac();
+                    break;
+            }
         }
     }
-    case 2:
-    int num1 = in.nextInt();
-    String symb1 = in.next();
-    int num2 = in.nextInt();
-    fraction frac1 = new fraction(num1, num2);   
 }
